@@ -1,0 +1,7 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+    org.apereo.cas.config.CasEmbeddedContainerTomcatConfiguration,\
+    org.apereo.cas.config.CustomCasCoreTicketsConfiguration,\
+    org.apereo.cas.web.flow.config.CustomCasCoreWebflowConfiguration,\
+    org.apereo.cas.web.flow.config.CustomCasWebflowContextConfiguration,\
+    org.apereo.cas.web.config.CustomCasSupportActionsConfiguration,\
+    org.apereo.cas.adaptors.jdbc.config.CustomCasJdbcAuthenticationConfiguration

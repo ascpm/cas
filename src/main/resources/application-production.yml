@@ -1,0 +1,68 @@
+# logging properties
+logging:
+  config: classpath:logging/log4j2-production.xml
+
+# cas properties
+cas:
+  authn:
+    attributeRepository:
+      jdbc[0]:
+        idleTimeout: 1200000
+        pool:
+          minSize: 20
+          maxSize: 30
+          maxWait: 100
+        healthQuery: SELECT 1
+    jdbc:
+      query[0]:
+        sql:
+          SELECT
+            *
+          FROM
+            USER
+          WHERE
+            UID = ?
+        healthQuery: SELECT 1
+        url: jdbc:h2:~/Databases/h2/cas;AUTO_SERVER=TRUE
+        dialect: org.hibernate.dialect.H2Dialect
+        user: cas
+        ddlAuto: none
+        password: cas
+        driverClass: org.h2.Driver
+        idleTimeout: 1200000
+        fieldPassword: USER_PASSWORD
+        principalAttributeList: UID:username,CN:name
+        passwordEncoder:
+          type: DEFAULT
+          characterEncoding: UTF-8
+          encodingAlgorithm: SHA-256
+
+  host:
+    name: localhost
+
+  httpClient:
+    allowLocalLogoutUrls: true
+
+  logout:
+    followServiceRedirects: true
+
+  server:
+    name: https://localhost:8443
+    prefix: https://localhost:8443/cas
+
+  serviceRegistry:
+    json:
+      location: classpath:/services
+
+  ticket:
+    st:
+      numberOfUses: 10
+      timeTokillInSeconds: 60
+    tgt:
+      maxTimeToLiveInSeconds: 1800
+      timeToKillInSeconds: 1800
+
+# custom properties
+custom:
+  session:
+    single: true

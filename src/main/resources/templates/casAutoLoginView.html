@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <title>CAS</title>
+
+    <link rel="icon" th:href="@{/favicon.ico}" type="image/x-icon"/>
+
+    <script type="text/javascript" th:src="@{#{webjars.jquerymin.js}}"></script>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        $(document).ready(function () {
+            var username = [[${#httpServletRequest.getParameter('username')}]];
+            var password = [[${#httpServletRequest.getParameter('password')}]];
+            var service = [[${#strings.defaultString(#httpServletRequest.getParameter('service'), '')}]];
+            var serviceLogin = [[${#strings.defaultString(#httpServletRequest.getParameter('serviceLogin'), '')}]];
+            var execution = [[${flowExecutionKey}]];
+            var form = $("<form>", {
+                "method": "post",
+                "action": "login"
+            }).append($("<input>", {
+                "name": "username",
+                "value": username,
+                "type": "hidden"
+            })).append($("<input>", {
+                "name": "password",
+                "value": password,
+                "type": "hidden"
+            })).append($("<input>", {
+                "name": "service",
+                "value": service,
+                "type": "hidden"
+            })).append($("<input>", {
+                "name": "serviceLogin",
+                "value": serviceLogin,
+                "type": "hidden"
+            })).append($("<input>", {
+                "name": "execution",
+                "value": execution,
+                "type": "hidden"
+            })).append($("<input>", {
+                "name": "_eventId",
+                "value": "submit",
+                "type": "hidden"
+            })).append($("<input>", {
+                "name": "geolocation",
+                "type": "hidden"
+            }));
+            $(document.body).append(form);
+            form.submit();
+        });
+
+        /*]]>*/
+    </script>
+</head>
+
+<body>
+</body>
+</html>
